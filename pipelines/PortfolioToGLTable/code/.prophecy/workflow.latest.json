@@ -1,0 +1,196 @@
+{
+  "metainfo" : {
+    "migrationVersions" : {
+      "gemBuilderVersion" : "v1"
+    },
+    "codeGenConfiguration" : {
+      "editableConfig" : true,
+      "plibVersion" : {
+        "mavenVersion" : "7.1.95",
+        "pyPiVersion" : "1.8.15"
+      }
+    },
+    "id" : "1",
+    "uri" : "pipelines/PortfolioToGLTable",
+    "pipelineSettingsInfo" : {
+      "applicationName" : "PortfolioToGLTable",
+      "hasApplication" : true
+    },
+    "language" : "python",
+    "fabricId" : "11613",
+    "frontEndLanguage" : "sql",
+    "mode" : "batch",
+    "udfs" : {
+      "language" : "python",
+      "udfs" : [ ],
+      "functionPackageName" : "pocwestpac.westpacassets.functions",
+      "sharedFunctionPackageNames" : [ "prophecy.spark_basic.functions", "prophecy.warehouse.functions" ]
+    },
+    "udafs" : {
+      "language" : "python",
+      "code" : ""
+    },
+    "configuration" : {
+      "common" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "oldCommon" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "fabrics" : { },
+      "instances" : { },
+      "selected" : "default",
+      "nonEditable" : [ ],
+      "isSubscribedPipelineWithPipelineConfigs" : false
+    },
+    "sparkConf" : [ ],
+    "hadoopConf" : [ ],
+    "codeMode" : "sparse",
+    "buildSystem" : "maven",
+    "externalDependencies" : [ ],
+    "dependentProjectExternalDependencies" : [ {
+      "projectUID" : "12654",
+      "projectName" : "ProphecySparkBasicsPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12655",
+      "projectName" : "ProphecyWarehousePython",
+      "externalDependencies" : [ ]
+    } ],
+    "isImported" : false,
+    "interimMode" : "Full",
+    "interimModeEnabled" : true,
+    "visualCodeInterimMode" : "Disabled",
+    "recordsLimit" : {
+      "enabled" : false,
+      "value" : 1000
+    },
+    "topLevelPackage" : "portfoliotogltable",
+    "configurationVersion" : "v2"
+  },
+  "connections" : [ {
+    "id" : "wFJsAkQs8r-dtGG_4Ios2",
+    "source" : "Gh-5M0BKOD8yxs05P5hr6$$rMXsp6lScW4IMRAs5K9t8",
+    "sourcePort" : "sjPOdMLgFEiek-jGkln1r$$sb4NXwqXSfOnyQFXLa0hK",
+    "target" : "mnhCq5wnGSU6bMbuDrEym$$HxkbhWgT7r2Id_s-NmJOM",
+    "targetPort" : "9AibII23lQ2QWhIswyAD8$$ei_etCh9TQ9N-TdiyWCf0"
+  } ],
+  "processes" : {
+    "Gh-5M0BKOD8yxs05P5hr6$$rMXsp6lScW4IMRAs5K9t8" : {
+      "id" : "Gh-5M0BKOD8yxs05P5hr6$$rMXsp6lScW4IMRAs5K9t8",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "L0_Portfolio_to_GL",
+        "slug" : "L0_Portfolio_to_GL",
+        "x" : -280,
+        "y" : -120,
+        "phase" : -1,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "sjPOdMLgFEiek-jGkln1r$$sb4NXwqXSfOnyQFXLa0hK",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "datasetId" : "datasets/PortfolioToGLTable"
+      }
+    },
+    "mnhCq5wnGSU6bMbuDrEym$$HxkbhWgT7r2Id_s-NmJOM" : {
+      "id" : "mnhCq5wnGSU6bMbuDrEym$$HxkbhWgT7r2Id_s-NmJOM",
+      "component" : "Lookup",
+      "metadata" : {
+        "label" : "create_portfolio_to_gl_lookup",
+        "slug" : "create_portfolio_to_gl_lookup",
+        "x" : -120,
+        "y" : -120,
+        "phase" : -1,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "9AibII23lQ2QWhIswyAD8$$ei_etCh9TQ9N-TdiyWCf0",
+          "slug" : "L1_Portfolio_to_GL",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "portfolio_name",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "location",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "GL_Level_1",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "GL_Level_2",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "GL_Level_3",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : false
+        } ],
+        "outputs" : [ ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "isRange" : false,
+        "processName" : "portfolio_to_GL",
+        "keyColumns" : [ "portfolio_name" ],
+        "valueColumns" : [ "location", "GL_Level_1", "GL_Level_2", "GL_Level_3" ]
+      }
+    }
+  },
+  "ports" : {
+    "inputs" : [ ],
+    "outputs" : [ ],
+    "selectedInputFields" : [ ],
+    "isCustomOutputSchema" : false,
+    "autoUpdateOnRun" : false
+  }
+}

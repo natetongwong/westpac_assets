@@ -1,0 +1,187 @@
+{
+  "metainfo" : {
+    "migrationVersions" : {
+      "gemBuilderVersion" : "v1"
+    },
+    "codeGenConfiguration" : {
+      "editableConfig" : true,
+      "plibVersion" : {
+        "mavenVersion" : "7.1.95",
+        "pyPiVersion" : "1.8.15"
+      }
+    },
+    "id" : "1",
+    "uri" : "pipelines/ExchangeRateTable",
+    "pipelineSettingsInfo" : {
+      "applicationName" : "ExchangeRateTable",
+      "hasApplication" : true
+    },
+    "language" : "python",
+    "fabricId" : "11613",
+    "frontEndLanguage" : "sql",
+    "mode" : "batch",
+    "udfs" : {
+      "language" : "python",
+      "udfs" : [ ],
+      "functionPackageName" : "pocwestpac.westpacassets.functions",
+      "sharedFunctionPackageNames" : [ "prophecy.spark_basic.functions", "prophecy.warehouse.functions" ]
+    },
+    "udafs" : {
+      "language" : "python",
+      "code" : ""
+    },
+    "configuration" : {
+      "common" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "oldCommon" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "fabrics" : { },
+      "instances" : { },
+      "selected" : "default",
+      "nonEditable" : [ ],
+      "isSubscribedPipelineWithPipelineConfigs" : false
+    },
+    "sparkConf" : [ ],
+    "hadoopConf" : [ ],
+    "codeMode" : "sparse",
+    "buildSystem" : "maven",
+    "externalDependencies" : [ ],
+    "dependentProjectExternalDependencies" : [ {
+      "projectUID" : "12654",
+      "projectName" : "ProphecySparkBasicsPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12655",
+      "projectName" : "ProphecyWarehousePython",
+      "externalDependencies" : [ ]
+    } ],
+    "isImported" : false,
+    "interimMode" : "Full",
+    "interimModeEnabled" : true,
+    "visualCodeInterimMode" : "Disabled",
+    "recordsLimit" : {
+      "enabled" : false,
+      "value" : 1000
+    },
+    "topLevelPackage" : "exchangeratetable",
+    "configurationVersion" : "v2"
+  },
+  "connections" : [ {
+    "id" : "_M_FQcC-Fl-bVlP7JKO-N",
+    "source" : "G-qb3DhR8IKwhfkxNwJ1K$$93vaNqeQNAqO_mpE9PPpZ",
+    "sourcePort" : "ZkcRXqDj3rMPS215Ambvj$$1dt39_FiOrro_PQlNP0Vd",
+    "target" : "A_kfVaIk-Tgv6hCogIe5x$$Olz362gjFH5koExlRZEgb",
+    "targetPort" : "jAIF-viW0EltnasgNfGqK$$CtnUFqCPONNya7aqkYgeU"
+  } ],
+  "processes" : {
+    "G-qb3DhR8IKwhfkxNwJ1K$$93vaNqeQNAqO_mpE9PPpZ" : {
+      "id" : "G-qb3DhR8IKwhfkxNwJ1K$$93vaNqeQNAqO_mpE9PPpZ",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "L0_raw_exchange_rate_table",
+        "slug" : "L0_raw_exchange_rate_table",
+        "x" : -140,
+        "y" : -100,
+        "phase" : -1,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "ZkcRXqDj3rMPS215Ambvj$$1dt39_FiOrro_PQlNP0Vd",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "datasetId" : "datasets/ExchangeRateTable"
+      }
+    },
+    "A_kfVaIk-Tgv6hCogIe5x$$Olz362gjFH5koExlRZEgb" : {
+      "id" : "A_kfVaIk-Tgv6hCogIe5x$$Olz362gjFH5koExlRZEgb",
+      "component" : "Lookup",
+      "metadata" : {
+        "label" : "create_exchange_rate_lookup",
+        "slug" : "create_exchange_rate_lookup",
+        "x" : 60,
+        "y" : -100,
+        "phase" : -1,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "jAIF-viW0EltnasgNfGqK$$CtnUFqCPONNya7aqkYgeU",
+          "slug" : "in0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "Currency_1",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "Currency_2",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "Conversion_Rate",
+              "type" : "double",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "Conversion_Rule",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : false
+        } ],
+        "outputs" : [ ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "isRange" : false,
+        "processName" : "exchange_rate_table",
+        "keyColumns" : [ "Currency_1" ],
+        "valueColumns" : [ "Conversion_Rate", "Currency_2", "Conversion_Rule" ]
+      }
+    }
+  },
+  "ports" : {
+    "inputs" : [ ],
+    "outputs" : [ ],
+    "selectedInputFields" : [ ],
+    "isCustomOutputSchema" : false,
+    "autoUpdateOnRun" : false
+  }
+}
