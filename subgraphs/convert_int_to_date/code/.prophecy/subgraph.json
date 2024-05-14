@@ -96,6 +96,14 @@
       "properties" : {
         "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
         "expressions" : [ {
+          "target" : "deal_id",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "deal_id"
+          },
+          "description" : "",
+          "_row_id" : "895753029409393817"
+        }, {
           "target" : "STRING_TRADE_DATE",
           "expression" : {
             "format" : "sql",
@@ -106,7 +114,7 @@
         } ],
         "importString" : "",
         "activeTab" : "expressions",
-        "columnsSelector" : [ "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##TRADE_DATE" ]
+        "columnsSelector" : [ "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##deal_id", "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##TRADE_DATE" ]
       },
       "componentInfo" : {
         "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -144,6 +152,14 @@
       "properties" : {
         "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
         "expressions" : [ {
+          "target" : "deal_id",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "deal_id"
+          },
+          "description" : "",
+          "_row_id" : "2640384237289044122"
+        }, {
           "target" : "ADD_LEADING_ZERO",
           "expression" : {
             "format" : "sql",
@@ -154,7 +170,7 @@
         } ],
         "importString" : "",
         "activeTab" : "expressions",
-        "columnsSelector" : [ "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_TRADE_DATE" ]
+        "columnsSelector" : [ "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##deal_id", "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_TRADE_DATE" ]
       },
       "componentInfo" : {
         "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -192,6 +208,14 @@
       "properties" : {
         "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
         "expressions" : [ {
+          "target" : "deal_id",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "deal_id"
+          },
+          "description" : "",
+          "_row_id" : "8844732230315717294"
+        }, {
           "target" : "TRADE_MONTH",
           "expression" : {
             "format" : "sql",
@@ -218,7 +242,7 @@
         } ],
         "importString" : "",
         "activeTab" : "expressions",
-        "columnsSelector" : [ "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##ADD_LEADING_ZERO" ]
+        "columnsSelector" : [ "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##ADD_LEADING_ZERO", "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##deal_id" ]
       },
       "componentInfo" : {
         "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -256,6 +280,14 @@
       "properties" : {
         "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
         "expressions" : [ {
+          "target" : "deal_id",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "deal_id"
+          },
+          "description" : "",
+          "_row_id" : "7798914445867416629"
+        }, {
           "target" : "TRADE_DATE",
           "expression" : {
             "format" : "sql",
@@ -266,7 +298,7 @@
         } ],
         "importString" : "",
         "activeTab" : "expressions",
-        "columnsSelector" : [ "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_MONTH" ]
+        "columnsSelector" : [ "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##deal_id", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_MONTH" ]
       },
       "componentInfo" : {
         "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",

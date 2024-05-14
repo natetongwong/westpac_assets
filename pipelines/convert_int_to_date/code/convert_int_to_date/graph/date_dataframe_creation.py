@@ -7,6 +7,10 @@ from convert_int_to_date.config.ConfigStore import *
 from convert_int_to_date.udfs.UDFs import *
 
 def date_dataframe_creation(spark: SparkSession) -> DataFrame:
-    out0 = spark.createDataFrame([('31012020', ), ('02032021', ), ('3042022', )], ["TRADE_DATE"])
+    schema = StructType([
+StructField("deal_id", IntegerType(), True), StructField("TRADE_DATE", IntegerType(), True)])
+    # Create DataFrame with deal_id and TRADE_DATE columns
+    data = [(1, 31012020), (2, 4022021), (3, 24032022)]
+    out0 = spark.createDataFrame(data, schema)
 
     return out0

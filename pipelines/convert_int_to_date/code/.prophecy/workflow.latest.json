@@ -108,8 +108,17 @@
           "schema" : {
             "type" : "struct",
             "fields" : [ {
+              "name" : "deal_id",
+              "type" : "integer",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
               "name" : "TRADE_DATE",
-              "type" : "string",
+              "type" : "integer",
               "nullable" : true,
               "metadata" : {
                 "description" : "",
@@ -125,7 +134,7 @@
         "autoUpdateOnRun" : true
       },
       "properties" : {
-        "script" : "out0 = spark.createDataFrame([('31012020',), ('02032021',), ('3042022',)], [\"TRADE_DATE\"])",
+        "script" : "schema = StructType([\n    StructField(\"deal_id\", IntegerType(), True),\n    StructField(\"TRADE_DATE\", IntegerType(), True)\n])\n\n# Create DataFrame with deal_id and TRADE_DATE columns\ndata = [(1, 31012020), (2, 4022021), (3, 24032022)]\nout0 = spark.createDataFrame(data, schema)",
         "scriptMethodHeader" : "def Script(spark: SparkSession) -> DataFrame:",
         "scriptMethodFooter" : "    return out0"
       }
@@ -150,8 +159,17 @@
           "schema" : {
             "type" : "struct",
             "fields" : [ {
+              "name" : "deal_id",
+              "type" : "integer",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
               "name" : "TRADE_DATE",
-              "type" : "string",
+              "type" : "integer",
               "nullable" : true,
               "metadata" : {
                 "description" : "",
@@ -227,8 +245,17 @@
               "schema" : {
                 "type" : "struct",
                 "fields" : [ {
+                  "name" : "deal_id",
+                  "type" : "integer",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
                   "name" : "TRADE_DATE",
-                  "type" : "string",
+                  "type" : "integer",
                   "nullable" : true,
                   "metadata" : {
                     "description" : "",
@@ -250,6 +277,13 @@
           "properties" : {
             "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
             "expressions" : [ {
+              "target" : "deal_id",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "deal_id"
+              },
+              "description" : ""
+            }, {
               "target" : "STRING_TRADE_DATE",
               "expression" : {
                 "format" : "sql",
@@ -259,7 +293,7 @@
             } ],
             "importString" : "",
             "activeTab" : "expressions",
-            "columnsSelector" : [ "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##TRADE_DATE" ]
+            "columnsSelector" : [ "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##deal_id", "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##TRADE_DATE" ]
           },
           "componentInfo" : {
             "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -286,6 +320,15 @@
               "schema" : {
                 "type" : "struct",
                 "fields" : [ {
+                  "name" : "deal_id",
+                  "type" : "integer",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
                   "name" : "STRING_TRADE_DATE",
                   "type" : "string",
                   "nullable" : true,
@@ -309,6 +352,13 @@
           "properties" : {
             "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
             "expressions" : [ {
+              "target" : "deal_id",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "deal_id"
+              },
+              "description" : ""
+            }, {
               "target" : "ADD_LEADING_ZERO",
               "expression" : {
                 "format" : "sql",
@@ -318,7 +368,7 @@
             } ],
             "importString" : "",
             "activeTab" : "expressions",
-            "columnsSelector" : [ "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_TRADE_DATE" ]
+            "columnsSelector" : [ "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##deal_id", "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_TRADE_DATE" ]
           },
           "componentInfo" : {
             "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -345,6 +395,15 @@
               "schema" : {
                 "type" : "struct",
                 "fields" : [ {
+                  "name" : "deal_id",
+                  "type" : "integer",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
                   "name" : "ADD_LEADING_ZERO",
                   "type" : "string",
                   "nullable" : true,
@@ -368,6 +427,13 @@
           "properties" : {
             "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
             "expressions" : [ {
+              "target" : "deal_id",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "deal_id"
+              },
+              "description" : ""
+            }, {
               "target" : "TRADE_MONTH",
               "expression" : {
                 "format" : "sql",
@@ -391,7 +457,7 @@
             } ],
             "importString" : "",
             "activeTab" : "expressions",
-            "columnsSelector" : [ "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##ADD_LEADING_ZERO" ]
+            "columnsSelector" : [ "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##ADD_LEADING_ZERO", "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##deal_id" ]
           },
           "componentInfo" : {
             "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -418,6 +484,15 @@
               "schema" : {
                 "type" : "struct",
                 "fields" : [ {
+                  "name" : "deal_id",
+                  "type" : "integer",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
                   "name" : "TRADE_MONTH",
                   "type" : "string",
                   "nullable" : true,
@@ -459,6 +534,13 @@
           "properties" : {
             "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
             "expressions" : [ {
+              "target" : "deal_id",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "deal_id"
+              },
+              "description" : ""
+            }, {
               "target" : "TRADE_DATE",
               "expression" : {
                 "format" : "sql",
@@ -468,7 +550,7 @@
             } ],
             "importString" : "",
             "activeTab" : "expressions",
-            "columnsSelector" : [ "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_MONTH" ]
+            "columnsSelector" : [ "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##deal_id", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_MONTH" ]
           },
           "componentInfo" : {
             "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
