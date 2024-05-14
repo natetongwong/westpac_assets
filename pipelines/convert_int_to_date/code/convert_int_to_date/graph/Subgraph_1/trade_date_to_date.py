@@ -8,5 +8,5 @@ from convert_int_to_date.udfs.UDFs import *
 
 def trade_date_to_date(spark: SparkSession, reformat_trade_date: DataFrame) -> DataFrame:
     return reformat_trade_date.select(
-        make_date(col("TRADE_YEAR"), col("TRADE_MONTH"), col("TRADE_DAY")).alias("TRADE_DATE_DATE")
+        make_date(col("TRADE_YEAR"), col("TRADE_MONTH"), col("TRADE_DAY")).alias("TRADE_DATE")
     )

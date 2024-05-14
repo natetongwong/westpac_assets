@@ -8,8 +8,7 @@ from convert_int_to_date.udfs.UDFs import *
 
 def formatted_trade_date(spark: SparkSession, in0: DataFrame) -> DataFrame:
     return in0.select(
-        col("TRADE_DATE"), 
         when((length(col("STRING_TRADE_DATE")) == lit(7)), concat(lit("0"), col("STRING_TRADE_DATE")))\
           .otherwise(col("STRING_TRADE_DATE"))\
-          .alias("STRING_TRADE_DATE")
+          .alias("ADD_LEADING_ZERO")
     )
