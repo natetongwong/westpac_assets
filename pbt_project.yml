@@ -39,6 +39,20 @@ pipelines:
       outputs: []
     subgraphs: []
     dependencies: {}
+  pipelines/convert_int_to_date:
+    name: convert_int_to_date
+    description: ''
+    author: nathan+westpac@prophecy.io
+    mode: batch
+    artefactID: ''
+    language: python
+    createdAt: '2024-05-14 01:43:40'
+    datasets:
+      inputs: []
+      outputs: []
+    subgraphs:
+    - subgraphs/convert_int_to_date
+    dependencies: {}
 datasets:
   datasets/ExchangeRateTable:
     name: ExchangeRateTable
@@ -80,7 +94,15 @@ functions:
   udafs: {}
   expressions: {}
   airflowFunctions: {}
-subgraphs: {}
+subgraphs:
+  subgraphs/convert_int_to_date:
+    name: convert_int_to_date
+    description: Converts Integer-formatted dates to Date Types
+    author: nathan+westpac@prophecy.io
+    language: python
+    artefactID: ''
+    mode: batch
+    createdAt: '2024-05-14 01:52:43'
 sqlModels: {}
 sqlSnapshots: {}
 sqlMacros: {}
@@ -90,17 +112,17 @@ sqlUnreferencedSources: {}
 sqlPipeline: null
 dependencies:
 - type: plibMaven
-  modifiedAt: '2024-05-13T20:27:00.107913Z'
+  modifiedAt: '2024-05-13T20:29:06.996187Z'
   name: plibMaven
   version: 7.1.95
-  id: '2053479636'
-  createdAt: '2024-05-13T20:27:00.107781Z'
+  id: '1594390890'
+  createdAt: '2024-05-13T20:29:06.99608Z'
 - type: plibPypi
-  modifiedAt: '2024-05-13T20:27:00.108155Z'
+  modifiedAt: '2024-05-13T20:29:06.996302Z'
   name: plibPypi
   version: 1.8.15
-  id: '1798138300'
-  createdAt: '2024-05-13T20:27:00.10799Z'
+  id: '1811856507'
+  createdAt: '2024-05-13T20:29:06.996225Z'
 projectDependencies:
   '12654':
     projectUID: 12654

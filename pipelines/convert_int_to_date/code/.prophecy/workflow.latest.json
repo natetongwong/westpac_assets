@@ -1,0 +1,536 @@
+{
+  "metainfo" : {
+    "migrationVersions" : {
+      "gemBuilderVersion" : "v1"
+    },
+    "codeGenConfiguration" : {
+      "editableConfig" : true,
+      "plibVersion" : {
+        "mavenVersion" : "7.1.95",
+        "pyPiVersion" : "1.8.15"
+      }
+    },
+    "id" : "1",
+    "uri" : "pipelines/convert_int_to_date",
+    "pipelineSettingsInfo" : {
+      "applicationName" : "convert_int_to_date",
+      "hasApplication" : true
+    },
+    "language" : "python",
+    "fabricId" : "11613",
+    "frontEndLanguage" : "sql",
+    "mode" : "batch",
+    "udfs" : {
+      "language" : "python",
+      "udfs" : [ ],
+      "functionPackageName" : "pocwestpac.westpacassets.functions",
+      "sharedFunctionPackageNames" : [ "prophecy.spark_basic.functions", "prophecy.warehouse.functions" ]
+    },
+    "udafs" : {
+      "language" : "python",
+      "code" : ""
+    },
+    "configuration" : {
+      "common" : {
+        "type" : "record",
+        "fields" : [ {
+          "name" : "Subgraph_1",
+          "kind" : {
+            "type" : "record",
+            "fields" : [ ]
+          },
+          "optional" : false,
+          "isWorkflowNodeConfiguration" : true,
+          "isReferenced" : false
+        } ]
+      },
+      "oldCommon" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "fabrics" : { },
+      "instances" : { },
+      "selected" : "default",
+      "nonEditable" : [ ],
+      "isSubscribedPipelineWithPipelineConfigs" : false
+    },
+    "sparkConf" : [ ],
+    "hadoopConf" : [ ],
+    "codeMode" : "sparse",
+    "buildSystem" : "maven",
+    "externalDependencies" : [ ],
+    "dependentProjectExternalDependencies" : [ {
+      "projectUID" : "12654",
+      "projectName" : "ProphecySparkBasicsPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12655",
+      "projectName" : "ProphecyWarehousePython",
+      "externalDependencies" : [ ]
+    } ],
+    "isImported" : false,
+    "interimMode" : "Full",
+    "interimModeEnabled" : true,
+    "visualCodeInterimMode" : "Disabled",
+    "recordsLimit" : {
+      "enabled" : false,
+      "value" : 1000
+    },
+    "topLevelPackage" : "convert_int_to_date",
+    "configurationVersion" : "v2"
+  },
+  "connections" : [ {
+    "id" : "d8j0LUThCqPkIKOGIU_nN",
+    "source" : "3F355YUCQJppnH_2XHQod$$6t9LvE-oq5eX1ZDCWatxf",
+    "sourcePort" : "aSwMXm6ry0X1aGkEOrWP_$$6oZ3MKLClLo594stKXZTt",
+    "target" : "dItOotOLMrPCVK3rtZrOZ$$EHm4auF-X9cKJY-pGLClb",
+    "targetPort" : "hyPkEUV_CuUA2Dap_laxs$$-GY-lV_-k0BFMLaKEZPQo"
+  } ],
+  "processes" : {
+    "3F355YUCQJppnH_2XHQod$$6t9LvE-oq5eX1ZDCWatxf" : {
+      "id" : "3F355YUCQJppnH_2XHQod$$6t9LvE-oq5eX1ZDCWatxf",
+      "component" : "Script",
+      "metadata" : {
+        "label" : "date_dataframe_creation",
+        "slug" : "date_dataframe_creation",
+        "x" : -380,
+        "y" : -100,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "aSwMXm6ry0X1aGkEOrWP_$$6oZ3MKLClLo594stKXZTt",
+          "slug" : "out0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "TRADE_DATE",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : false
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : true,
+        "autoUpdateOnRun" : true
+      },
+      "properties" : {
+        "script" : "out0 = spark.createDataFrame([('31012020',), ('02032021',), ('3042022',)], [\"TRADE_DATE\"])",
+        "scriptMethodHeader" : "def Script(spark: SparkSession) -> DataFrame:",
+        "scriptMethodFooter" : "    return out0"
+      }
+    },
+    "dItOotOLMrPCVK3rtZrOZ$$EHm4auF-X9cKJY-pGLClb" : {
+      "id" : "dItOotOLMrPCVK3rtZrOZ$$EHm4auF-X9cKJY-pGLClb",
+      "component" : "Subgraph",
+      "metadata" : {
+        "label" : "Subgraph_1",
+        "slug" : "Subgraph_1",
+        "x" : -200,
+        "y" : -100,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "hyPkEUV_CuUA2Dap_laxs$$-GY-lV_-k0BFMLaKEZPQo",
+          "slug" : "in0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "TRADE_DATE",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : false
+        } ],
+        "outputs" : [ {
+          "id" : "C7GCe3kyKqiT6t_TplSdu$$4LGjQf4Xgw4zXM1wIB6N5",
+          "slug" : "out0"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "packageName" : "convert_int_to_date",
+        "externalId" : "subgraphs/convert_int_to_date",
+        "name" : "convert_int_to_date"
+      },
+      "connections" : [ {
+        "id" : "GZ1V4vWU2mA-MPN_28FPH",
+        "source" : "ANaaREdpbZaxrPTKeyou4$$ABaqsfLfNqhPjvVT2twxe",
+        "sourcePort" : "9GpzUVFhp4jhoIlJlS5E5$$hP45chyDhDXxV4uxybaTu",
+        "target" : "L0SYJSt3hrhNT2jJIUk7k$$4YfdLzd3w4aTmBURkJC0C",
+        "targetPort" : "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU"
+      }, {
+        "id" : "9o00p0wt-dRcHr62Pn7mp",
+        "source" : "L0SYJSt3hrhNT2jJIUk7k$$4YfdLzd3w4aTmBURkJC0C",
+        "sourcePort" : "2t2zDiUecHpl1lk0G4rdm$$QPacV7KklRV7bFPwNh1bk",
+        "target" : "d2kFW5rGmLV3YZNl-mpuI$$_NpLjIWvwNEYzuJUkdpoB",
+        "targetPort" : "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox"
+      }, {
+        "id" : "QtKhlPlE2lua4HFR41f3Z",
+        "source" : "d2kFW5rGmLV3YZNl-mpuI$$_NpLjIWvwNEYzuJUkdpoB",
+        "sourcePort" : "fyHkAjTjZpwZzhEopBEn9$$AaHCuOaLOcAjVPF7Mup_i",
+        "target" : "VMDj6XXnErz1HM3N7cApj$$EX0yve9DlZrh68yz1XTH2",
+        "targetPort" : "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT"
+      }, {
+        "id" : "POMY73KJ5OFeYTXl-a_vk",
+        "source" : "dItOotOLMrPCVK3rtZrOZ$$EHm4auF-X9cKJY-pGLClb",
+        "sourcePort" : "hyPkEUV_CuUA2Dap_laxs$$-GY-lV_-k0BFMLaKEZPQo",
+        "target" : "ANaaREdpbZaxrPTKeyou4$$ABaqsfLfNqhPjvVT2twxe",
+        "targetPort" : "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU"
+      }, {
+        "id" : "FHGzfft_D73SczliWs00B",
+        "source" : "VMDj6XXnErz1HM3N7cApj$$EX0yve9DlZrh68yz1XTH2",
+        "sourcePort" : "rn_iSs9fOUNKfqvN25EbZ$$r6fBCA6FDDH_fw68nikoG",
+        "target" : "dItOotOLMrPCVK3rtZrOZ$$EHm4auF-X9cKJY-pGLClb",
+        "targetPort" : "C7GCe3kyKqiT6t_TplSdu$$4LGjQf4Xgw4zXM1wIB6N5"
+      } ],
+      "processes" : {
+        "ANaaREdpbZaxrPTKeyou4$$ABaqsfLfNqhPjvVT2twxe" : {
+          "id" : "ANaaREdpbZaxrPTKeyou4$$ABaqsfLfNqhPjvVT2twxe",
+          "component" : "Reformat",
+          "metadata" : {
+            "label" : "trade_date_projection",
+            "slug" : "trade_date_projection",
+            "x" : -240,
+            "y" : -100,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU",
+              "slug" : "in0",
+              "schema" : {
+                "type" : "struct",
+                "fields" : [ {
+                  "name" : "TRADE_DATE",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                } ]
+              },
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "9GpzUVFhp4jhoIlJlS5E5$$hP45chyDhDXxV4uxybaTu",
+              "slug" : "out"
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false,
+            "autoUpdateOnRun" : false
+          },
+          "properties" : {
+            "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
+            "expressions" : [ {
+              "target" : "TRADE_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "TRADE_DATE"
+              },
+              "description" : ""
+            }, {
+              "target" : "STRING_TRADE_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "cast(TRADE_DATE as string)"
+              },
+              "description" : ""
+            } ],
+            "importString" : "",
+            "activeTab" : "expressions",
+            "columnsSelector" : [ ]
+          },
+          "componentInfo" : {
+            "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
+            "projectName" : "ProphecySparkBasicsPython"
+          }
+        },
+        "L0SYJSt3hrhNT2jJIUk7k$$4YfdLzd3w4aTmBURkJC0C" : {
+          "id" : "L0SYJSt3hrhNT2jJIUk7k$$4YfdLzd3w4aTmBURkJC0C",
+          "component" : "Reformat",
+          "metadata" : {
+            "label" : "formatted_trade_date",
+            "slug" : "formatted_trade_date",
+            "x" : -100,
+            "y" : -100,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU",
+              "slug" : "in0",
+              "schema" : {
+                "type" : "struct",
+                "fields" : [ {
+                  "name" : "TRADE_DATE",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "STRING_TRADE_DATE",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                } ]
+              },
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "2t2zDiUecHpl1lk0G4rdm$$QPacV7KklRV7bFPwNh1bk",
+              "slug" : "out"
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false,
+            "autoUpdateOnRun" : false
+          },
+          "properties" : {
+            "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
+            "expressions" : [ {
+              "target" : "TRADE_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "TRADE_DATE"
+              },
+              "description" : ""
+            }, {
+              "target" : "STRING_TRADE_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "CASE WHEN (length(STRING_TRADE_DATE) = 7) THEN concat('0', STRING_TRADE_DATE) ELSE STRING_TRADE_DATE END"
+              },
+              "description" : ""
+            } ],
+            "importString" : "",
+            "activeTab" : "expressions",
+            "columnsSelector" : [ ]
+          },
+          "componentInfo" : {
+            "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
+            "projectName" : "ProphecySparkBasicsPython"
+          }
+        },
+        "d2kFW5rGmLV3YZNl-mpuI$$_NpLjIWvwNEYzuJUkdpoB" : {
+          "id" : "d2kFW5rGmLV3YZNl-mpuI$$_NpLjIWvwNEYzuJUkdpoB",
+          "component" : "Reformat",
+          "metadata" : {
+            "label" : "split_trade_date",
+            "slug" : "split_trade_date",
+            "x" : 40,
+            "y" : -100,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox",
+              "slug" : "reformatted_trade_date",
+              "schema" : {
+                "type" : "struct",
+                "fields" : [ {
+                  "name" : "TRADE_DATE",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "STRING_TRADE_DATE",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                } ]
+              },
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "fyHkAjTjZpwZzhEopBEn9$$AaHCuOaLOcAjVPF7Mup_i",
+              "slug" : "out"
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false,
+            "autoUpdateOnRun" : false
+          },
+          "properties" : {
+            "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
+            "expressions" : [ {
+              "target" : "TRADE_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "TRADE_DATE"
+              },
+              "description" : ""
+            }, {
+              "target" : "TRADE_MONTH",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "substring(STRING_TRADE_DATE, 3, 2)"
+              },
+              "description" : ""
+            }, {
+              "target" : "TRADE_DAY",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "substring(STRING_TRADE_DATE, 1, 2)"
+              },
+              "description" : ""
+            }, {
+              "target" : "TRADE_YEAR",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "substring(STRING_TRADE_DATE, 5, 4)"
+              },
+              "description" : ""
+            } ],
+            "importString" : "",
+            "activeTab" : "expressions",
+            "columnsSelector" : [ ]
+          },
+          "componentInfo" : {
+            "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
+            "projectName" : "ProphecySparkBasicsPython"
+          }
+        },
+        "VMDj6XXnErz1HM3N7cApj$$EX0yve9DlZrh68yz1XTH2" : {
+          "id" : "VMDj6XXnErz1HM3N7cApj$$EX0yve9DlZrh68yz1XTH2",
+          "component" : "Reformat",
+          "metadata" : {
+            "label" : "trade_date_to_date",
+            "slug" : "trade_date_to_date",
+            "x" : 180,
+            "y" : -100,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT",
+              "slug" : "reformat_trade_date",
+              "schema" : {
+                "type" : "struct",
+                "fields" : [ {
+                  "name" : "TRADE_DATE",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "TRADE_MONTH",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "TRADE_DAY",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "TRADE_YEAR",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                } ]
+              },
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "rn_iSs9fOUNKfqvN25EbZ$$r6fBCA6FDDH_fw68nikoG",
+              "slug" : "out"
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false,
+            "autoUpdateOnRun" : false
+          },
+          "properties" : {
+            "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
+            "expressions" : [ {
+              "target" : "TRADE_DATE_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "make_date(TRADE_YEAR, TRADE_MONTH, TRADE_DAY)"
+              },
+              "description" : ""
+            } ],
+            "importString" : "",
+            "activeTab" : "expressions",
+            "columnsSelector" : [ ]
+          },
+          "componentInfo" : {
+            "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
+            "projectName" : "ProphecySparkBasicsPython"
+          }
+        }
+      }
+    }
+  },
+  "ports" : {
+    "inputs" : [ ],
+    "outputs" : [ ],
+    "selectedInputFields" : [ ],
+    "isCustomOutputSchema" : false,
+    "autoUpdateOnRun" : false
+  }
+}
