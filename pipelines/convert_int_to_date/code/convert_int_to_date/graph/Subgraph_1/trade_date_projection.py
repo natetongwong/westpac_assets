@@ -7,4 +7,9 @@ from .config import *
 from convert_int_to_date.udfs.UDFs import *
 
 def trade_date_projection(spark: SparkSession, in0: DataFrame) -> DataFrame:
-    return in0.select(col("deal_id"), col("TRADE_DATE").cast(StringType()).alias("STRING_TRADE_DATE"))
+    return in0.select(
+        col("deal_id"), 
+        col("TRADE_DATE").cast(StringType()).alias("STRING_TRADE_DATE"), 
+        col("SETTLEMENT_DATE").cast(StringType()).alias("STRING_SETTLEMENT_DATE"), 
+        col("MATURITY_DATE").cast(StringType()).alias("STRING_MATURITY_DATE")
+    )

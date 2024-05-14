@@ -74,7 +74,7 @@
         "label" : "trade_date_projection",
         "slug" : "trade_date_projection",
         "x" : -240,
-        "y" : -100,
+        "y" : -220,
         "phase" : 0,
         "cache" : false,
         "detailedStats" : false,
@@ -111,10 +111,26 @@
           },
           "description" : "",
           "_row_id" : "c_783"
+        }, {
+          "target" : "STRING_SETTLEMENT_DATE",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "CAST(SETTLEMENT_DATE AS string)"
+          },
+          "description" : "",
+          "_row_id" : "8132087913113939445"
+        }, {
+          "target" : "STRING_MATURITY_DATE",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "CAST(MATURITY_DATE AS STRING)"
+          },
+          "description" : "",
+          "_row_id" : "6055051097525751625"
         } ],
         "importString" : "",
         "activeTab" : "expressions",
-        "columnsSelector" : [ "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##deal_id", "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##TRADE_DATE" ]
+        "columnsSelector" : [ "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##SETTLEMENT_DATE", "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##TRADE_DATE", "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##DEAL_ID", "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##MATURITY_DATE" ]
       },
       "componentInfo" : {
         "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -130,7 +146,7 @@
         "label" : "formatted_trade_date",
         "slug" : "formatted_trade_date",
         "x" : -100,
-        "y" : -100,
+        "y" : -220,
         "phase" : 0,
         "cache" : false,
         "detailedStats" : false,
@@ -160,17 +176,33 @@
           "description" : "",
           "_row_id" : "2640384237289044122"
         }, {
-          "target" : "ADD_LEADING_ZERO",
+          "target" : "UPDATED_TRADE_DATE",
           "expression" : {
             "format" : "sql",
             "expression" : "CASE WHEN (length(STRING_TRADE_DATE) = 7) THEN concat('0', STRING_TRADE_DATE) ELSE STRING_TRADE_DATE END"
           },
           "description" : "",
           "_row_id" : "8404387226394272224"
+        }, {
+          "target" : "UPDATED_SETTLEMENT_DATE",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "CASE WHEN (length(STRING_SETTLEMENT_DATE) = 7) THEN concat('0', STRING_SETTLEMENT_DATE) ELSE STRING_SETTLEMENT_DATE END"
+          },
+          "description" : "",
+          "_row_id" : "c_196"
+        }, {
+          "target" : "UPDATED_MATURITY_DATE",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "CASE \nWHEN (length(STRING_MATURITY_DATE) = 7) THEN concat('0', STRING_MATURITY_DATE)\nWHEN (length(STRING_MATURITY_DATE) = 4) THEN concat('01', substring(STRING_MATURITY_DATE, 1, 2), '20', substring(STRING_MATURITY_DATE, 3, 2))\nELSE STRING_MATURITY_DATE \nEND"
+          },
+          "description" : "",
+          "_row_id" : "c_315"
         } ],
         "importString" : "",
         "activeTab" : "expressions",
-        "columnsSelector" : [ "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##deal_id", "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_TRADE_DATE" ]
+        "columnsSelector" : [ "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##deal_id", "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_MATURITY_DATE", "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_SETTLEMENT_DATE", "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_TRADE_DATE" ]
       },
       "componentInfo" : {
         "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -186,7 +218,7 @@
         "label" : "split_trade_date",
         "slug" : "split_trade_date",
         "x" : 40,
-        "y" : -100,
+        "y" : -220,
         "phase" : 0,
         "cache" : false,
         "detailedStats" : false,
@@ -219,7 +251,7 @@
           "target" : "TRADE_MONTH",
           "expression" : {
             "format" : "sql",
-            "expression" : "substring(ADD_LEADING_ZERO, 3, 2)"
+            "expression" : "substring(UPDATED_TRADE_DATE, 3, 2)"
           },
           "description" : "",
           "_row_id" : "447582509509954539"
@@ -227,7 +259,7 @@
           "target" : "TRADE_DAY",
           "expression" : {
             "format" : "sql",
-            "expression" : "substring(ADD_LEADING_ZERO, 1, 2)"
+            "expression" : "substring(UPDATED_TRADE_DATE, 1, 2)"
           },
           "description" : "",
           "_row_id" : "c_989"
@@ -235,14 +267,62 @@
           "target" : "TRADE_YEAR",
           "expression" : {
             "format" : "sql",
-            "expression" : "substring(ADD_LEADING_ZERO, 5, 4)"
+            "expression" : "substring(UPDATED_TRADE_DATE, 5, 4)"
           },
           "description" : "",
           "_row_id" : "c_997"
+        }, {
+          "target" : "SETTLEMENT_MONTH",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "substring(UPDATED_SETTLEMENT_DATE, 3, 2)"
+          },
+          "description" : "",
+          "_row_id" : "c_210"
+        }, {
+          "target" : "SETTLEMENT_DAY",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "substring(UPDATED_SETTLEMENT_DATE, 1, 2)"
+          },
+          "description" : "",
+          "_row_id" : "c_228"
+        }, {
+          "target" : "SETTLEMENT_YEAR",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "substring(UPDATED_SETTLEMENT_DATE, 5, 4)"
+          },
+          "description" : "",
+          "_row_id" : "c_230"
+        }, {
+          "target" : "MATURITY_MONTH",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "substring(UPDATED_MATURITY_DATE, 3, 2)"
+          },
+          "description" : "",
+          "_row_id" : "c_407"
+        }, {
+          "target" : "MATURITY_DAY",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "substring(UPDATED_MATURITY_DATE, 1, 2)"
+          },
+          "description" : "",
+          "_row_id" : "c_416"
+        }, {
+          "target" : "MATURITY_YEAR",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "substring(UPDATED_MATURITY_DATE, 5, 4)"
+          },
+          "description" : "",
+          "_row_id" : "c_418"
         } ],
         "importString" : "",
         "activeTab" : "expressions",
-        "columnsSelector" : [ "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##ADD_LEADING_ZERO", "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##deal_id" ]
+        "columnsSelector" : [ "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##UPDATED_SETTLEMENT_DATE", "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##deal_id", "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##UPDATED_MATURITY_DATE", "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##UPDATED_TRADE_DATE" ]
       },
       "componentInfo" : {
         "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -258,7 +338,7 @@
         "label" : "trade_date_to_date",
         "slug" : "trade_date_to_date",
         "x" : 180,
-        "y" : -100,
+        "y" : -220,
         "phase" : 0,
         "cache" : false,
         "detailedStats" : false,
@@ -295,10 +375,26 @@
           },
           "description" : "",
           "_row_id" : "c_1017"
+        }, {
+          "target" : "SETTLEMENT_DATE",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "make_date(SETTLEMENT_YEAR, SETTLEMENT_MONTH, SETTLEMENT_DAY)"
+          },
+          "description" : "",
+          "_row_id" : "c_290"
+        }, {
+          "target" : "MATURITY_DATE",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "make_date(MATURITY_YEAR, MATURITY_MONTH, MATURITY_DAY)"
+          },
+          "description" : "",
+          "_row_id" : "c_458"
         } ],
         "importString" : "",
         "activeTab" : "expressions",
-        "columnsSelector" : [ "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##deal_id", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_MONTH" ]
+        "columnsSelector" : [ "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##MATURITY_MONTH", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##MATURITY_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##deal_id", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##SETTLEMENT_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##MATURITY_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_MONTH", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##SETTLEMENT_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##SETTLEMENT_MONTH" ]
       },
       "componentInfo" : {
         "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",

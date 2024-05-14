@@ -11,5 +11,20 @@ def formatted_trade_date(spark: SparkSession, in0: DataFrame) -> DataFrame:
         col("deal_id"), 
         when((length(col("STRING_TRADE_DATE")) == lit(7)), concat(lit("0"), col("STRING_TRADE_DATE")))\
           .otherwise(col("STRING_TRADE_DATE"))\
-          .alias("ADD_LEADING_ZERO")
+          .alias("UPDATED_TRADE_DATE"), 
+        when((length(col("STRING_SETTLEMENT_DATE")) == lit(7)), concat(lit("0"), col("STRING_SETTLEMENT_DATE")))\
+          .otherwise(col("STRING_SETTLEMENT_DATE"))\
+          .alias("UPDATED_SETTLEMENT_DATE"), 
+        when((length(col("STRING_MATURITY_DATE")) == lit(7)), concat(lit("0"), col("STRING_MATURITY_DATE")))\
+          .when(
+            (length(col("STRING_MATURITY_DATE")) == lit(4)), 
+            concat(
+              lit("01"), 
+              substring(col("STRING_MATURITY_DATE"), 1, 2), 
+              lit("20"), 
+              substring(col("STRING_MATURITY_DATE"), 3, 2)
+            )
+          )\
+          .otherwise(col("STRING_MATURITY_DATE"))\
+          .alias("UPDATED_MATURITY_DATE")
     )

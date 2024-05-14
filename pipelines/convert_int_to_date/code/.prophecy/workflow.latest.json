@@ -108,7 +108,7 @@
           "schema" : {
             "type" : "struct",
             "fields" : [ {
-              "name" : "deal_id",
+              "name" : "DEAL_ID",
               "type" : "integer",
               "nullable" : true,
               "metadata" : {
@@ -125,6 +125,24 @@
                 "mappings" : [ ],
                 "tags" : [ ]
               }
+            }, {
+              "name" : "SETTLEMENT_DATE",
+              "type" : "integer",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "MATURITY_DATE",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
             } ]
           },
           "isStreaming" : false
@@ -134,7 +152,7 @@
         "autoUpdateOnRun" : true
       },
       "properties" : {
-        "script" : "schema = StructType([\n    StructField(\"deal_id\", IntegerType(), True),\n    StructField(\"TRADE_DATE\", IntegerType(), True)\n])\n\n# Create DataFrame with deal_id and TRADE_DATE columns\ndata = [(1, 31012020), (2, 4022021), (3, 24032022)]\nout0 = spark.createDataFrame(data, schema)",
+        "script" : "schema = StructType([\n    StructField(\"DEAL_ID\", IntegerType(), True),\n    StructField(\"TRADE_DATE\", IntegerType(), True),\n    StructField(\"SETTLEMENT_DATE\", IntegerType(), True),\n    StructField(\"MATURITY_DATE\", StringType(), True)\n])\n\n# Create DataFrame with deal_id and DATE columns\ndata = [(1, 31012020, 31012020, '31012020'), \n        (2, 4022021, 4022021, '4022021'), \n        (3, 31032022, 24032022, '0322')\n        ]\n\nout0 = spark.createDataFrame(data, schema)",
         "scriptMethodHeader" : "def Script(spark: SparkSession) -> DataFrame:",
         "scriptMethodFooter" : "    return out0"
       }
@@ -159,7 +177,7 @@
           "schema" : {
             "type" : "struct",
             "fields" : [ {
-              "name" : "deal_id",
+              "name" : "DEAL_ID",
               "type" : "integer",
               "nullable" : true,
               "metadata" : {
@@ -170,6 +188,24 @@
             }, {
               "name" : "TRADE_DATE",
               "type" : "integer",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "SETTLEMENT_DATE",
+              "type" : "integer",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "MATURITY_DATE",
+              "type" : "string",
               "nullable" : true,
               "metadata" : {
                 "description" : "",
@@ -232,7 +268,7 @@
             "label" : "trade_date_projection",
             "slug" : "trade_date_projection",
             "x" : -240,
-            "y" : -100,
+            "y" : -220,
             "phase" : 0,
             "cache" : false,
             "detailedStats" : false,
@@ -245,7 +281,7 @@
               "schema" : {
                 "type" : "struct",
                 "fields" : [ {
-                  "name" : "deal_id",
+                  "name" : "DEAL_ID",
                   "type" : "integer",
                   "nullable" : true,
                   "metadata" : {
@@ -256,6 +292,24 @@
                 }, {
                   "name" : "TRADE_DATE",
                   "type" : "integer",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "SETTLEMENT_DATE",
+                  "type" : "integer",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "MATURITY_DATE",
+                  "type" : "string",
                   "nullable" : true,
                   "metadata" : {
                     "description" : "",
@@ -290,10 +344,24 @@
                 "expression" : "cast(TRADE_DATE as string)"
               },
               "description" : ""
+            }, {
+              "target" : "STRING_SETTLEMENT_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "CAST(SETTLEMENT_DATE AS string)"
+              },
+              "description" : ""
+            }, {
+              "target" : "STRING_MATURITY_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "CAST(MATURITY_DATE AS STRING)"
+              },
+              "description" : ""
             } ],
             "importString" : "",
             "activeTab" : "expressions",
-            "columnsSelector" : [ "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##deal_id", "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##TRADE_DATE" ]
+            "columnsSelector" : [ "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##SETTLEMENT_DATE", "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##TRADE_DATE", "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##DEAL_ID", "wViZVJyIVs5Lfg8aYM6DG$$WY3uAoZyA7p1dGOj1u5uU##MATURITY_DATE" ]
           },
           "componentInfo" : {
             "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -307,7 +375,7 @@
             "label" : "formatted_trade_date",
             "slug" : "formatted_trade_date",
             "x" : -100,
-            "y" : -100,
+            "y" : -220,
             "phase" : 0,
             "cache" : false,
             "detailedStats" : false,
@@ -337,6 +405,24 @@
                     "mappings" : [ ],
                     "tags" : [ ]
                   }
+                }, {
+                  "name" : "STRING_SETTLEMENT_DATE",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "STRING_MATURITY_DATE",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
                 } ]
               },
               "isStreaming" : false
@@ -359,16 +445,30 @@
               },
               "description" : ""
             }, {
-              "target" : "ADD_LEADING_ZERO",
+              "target" : "UPDATED_TRADE_DATE",
               "expression" : {
                 "format" : "sql",
                 "expression" : "CASE WHEN (length(STRING_TRADE_DATE) = 7) THEN concat('0', STRING_TRADE_DATE) ELSE STRING_TRADE_DATE END"
               },
               "description" : ""
+            }, {
+              "target" : "UPDATED_SETTLEMENT_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "CASE WHEN (length(STRING_SETTLEMENT_DATE) = 7) THEN concat('0', STRING_SETTLEMENT_DATE) ELSE STRING_SETTLEMENT_DATE END"
+              },
+              "description" : ""
+            }, {
+              "target" : "UPDATED_MATURITY_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "CASE \nWHEN (length(STRING_MATURITY_DATE) = 7) THEN concat('0', STRING_MATURITY_DATE)\nWHEN (length(STRING_MATURITY_DATE) = 4) THEN concat('01', substring(STRING_MATURITY_DATE, 1, 2), '20', substring(STRING_MATURITY_DATE, 3, 2))\nELSE STRING_MATURITY_DATE \nEND"
+              },
+              "description" : ""
             } ],
             "importString" : "",
             "activeTab" : "expressions",
-            "columnsSelector" : [ "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##deal_id", "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_TRADE_DATE" ]
+            "columnsSelector" : [ "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##deal_id", "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_MATURITY_DATE", "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_SETTLEMENT_DATE", "_f7IIDdnl4jNZiacVfVEl$$_tJPxUJxz3inb63Cp-xrU##STRING_TRADE_DATE" ]
           },
           "componentInfo" : {
             "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -382,7 +482,7 @@
             "label" : "split_trade_date",
             "slug" : "split_trade_date",
             "x" : 40,
-            "y" : -100,
+            "y" : -220,
             "phase" : 0,
             "cache" : false,
             "detailedStats" : false,
@@ -404,7 +504,25 @@
                     "tags" : [ ]
                   }
                 }, {
-                  "name" : "ADD_LEADING_ZERO",
+                  "name" : "UPDATED_TRADE_DATE",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "UPDATED_SETTLEMENT_DATE",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "UPDATED_MATURITY_DATE",
                   "type" : "string",
                   "nullable" : true,
                   "metadata" : {
@@ -437,27 +555,69 @@
               "target" : "TRADE_MONTH",
               "expression" : {
                 "format" : "sql",
-                "expression" : "substring(ADD_LEADING_ZERO, 3, 2)"
+                "expression" : "substring(UPDATED_TRADE_DATE, 3, 2)"
               },
               "description" : ""
             }, {
               "target" : "TRADE_DAY",
               "expression" : {
                 "format" : "sql",
-                "expression" : "substring(ADD_LEADING_ZERO, 1, 2)"
+                "expression" : "substring(UPDATED_TRADE_DATE, 1, 2)"
               },
               "description" : ""
             }, {
               "target" : "TRADE_YEAR",
               "expression" : {
                 "format" : "sql",
-                "expression" : "substring(ADD_LEADING_ZERO, 5, 4)"
+                "expression" : "substring(UPDATED_TRADE_DATE, 5, 4)"
+              },
+              "description" : ""
+            }, {
+              "target" : "SETTLEMENT_MONTH",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "substring(UPDATED_SETTLEMENT_DATE, 3, 2)"
+              },
+              "description" : ""
+            }, {
+              "target" : "SETTLEMENT_DAY",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "substring(UPDATED_SETTLEMENT_DATE, 1, 2)"
+              },
+              "description" : ""
+            }, {
+              "target" : "SETTLEMENT_YEAR",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "substring(UPDATED_SETTLEMENT_DATE, 5, 4)"
+              },
+              "description" : ""
+            }, {
+              "target" : "MATURITY_MONTH",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "substring(UPDATED_MATURITY_DATE, 3, 2)"
+              },
+              "description" : ""
+            }, {
+              "target" : "MATURITY_DAY",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "substring(UPDATED_MATURITY_DATE, 1, 2)"
+              },
+              "description" : ""
+            }, {
+              "target" : "MATURITY_YEAR",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "substring(UPDATED_MATURITY_DATE, 5, 4)"
               },
               "description" : ""
             } ],
             "importString" : "",
             "activeTab" : "expressions",
-            "columnsSelector" : [ "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##ADD_LEADING_ZERO", "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##deal_id" ]
+            "columnsSelector" : [ "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##UPDATED_SETTLEMENT_DATE", "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##deal_id", "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##UPDATED_MATURITY_DATE", "pS_RSeb1CiRr5qoibraHy$$HqE3MJepwwEE8Spqd5wox##UPDATED_TRADE_DATE" ]
           },
           "componentInfo" : {
             "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
@@ -471,7 +631,7 @@
             "label" : "trade_date_to_date",
             "slug" : "trade_date_to_date",
             "x" : 180,
-            "y" : -100,
+            "y" : -220,
             "phase" : 0,
             "cache" : false,
             "detailedStats" : false,
@@ -519,6 +679,60 @@
                     "mappings" : [ ],
                     "tags" : [ ]
                   }
+                }, {
+                  "name" : "SETTLEMENT_MONTH",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "SETTLEMENT_DAY",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "SETTLEMENT_YEAR",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "MATURITY_MONTH",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "MATURITY_DAY",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
+                }, {
+                  "name" : "MATURITY_YEAR",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "description" : "",
+                    "mappings" : [ ],
+                    "tags" : [ ]
+                  }
                 } ]
               },
               "isStreaming" : false
@@ -547,10 +761,24 @@
                 "expression" : "make_date(TRADE_YEAR, TRADE_MONTH, TRADE_DAY)"
               },
               "description" : ""
+            }, {
+              "target" : "SETTLEMENT_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "make_date(SETTLEMENT_YEAR, SETTLEMENT_MONTH, SETTLEMENT_DAY)"
+              },
+              "description" : ""
+            }, {
+              "target" : "MATURITY_DATE",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "make_date(MATURITY_YEAR, MATURITY_MONTH, MATURITY_DAY)"
+              },
+              "description" : ""
             } ],
             "importString" : "",
             "activeTab" : "expressions",
-            "columnsSelector" : [ "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##deal_id", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_MONTH" ]
+            "columnsSelector" : [ "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##MATURITY_MONTH", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##MATURITY_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##deal_id", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##SETTLEMENT_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##MATURITY_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_MONTH", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##SETTLEMENT_DAY", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##TRADE_YEAR", "AoLqYSXPJVirk8z9pAZMF$$DIRWhWgGbNirSmnMw6qnT##SETTLEMENT_MONTH" ]
           },
           "componentInfo" : {
             "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.12&projectSubscriptionProjectId=12654&path=gems/Reformat",
